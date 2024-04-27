@@ -15,7 +15,7 @@ const TodoList = () => {
 
   const deleteAllCompletedTask = async () => {
     try {
-      const res = await axios.delete("http://localhost:4000/api/todos/completed");
+      const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/todos/completed`);
       const remainTodos = todos.filter((todo) => !todo.done);
       console.log("All Completed tasks deleted", res);
       addTodo(remainTodos);
