@@ -12,7 +12,7 @@ const TodoItem = ({ todo }) => {
     const updatedTodo = { ...todo, done: !isChecked };
 
     try {
-      await axios.put(`http://localhost:4000/api/todo/${todo._id}`, updatedTodo);
+      await axios.put(`${process.env.REACT_APP_BACKEND_URL}/todo/${todo._id}`, updatedTodo);
       setIsChecked((prev) => !prev);
 
       const updatedTodos = todos.map((t) => (t._id === todo._id ? updatedTodo : t));
@@ -24,7 +24,7 @@ const TodoItem = ({ todo }) => {
 
   const handleDeleteClick = async (todo) => {
     try {
-      await axios.delete(`http://localhost:4000/api/todo/${todo._id}`);
+      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/todo/${todo._id}`);
       const remainTodos = todos.filter((eachTodo) => eachTodo._id !== todo._id);
       addTodo(remainTodos);
       toast.success("Task Successfully deleted");
