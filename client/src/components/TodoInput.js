@@ -13,7 +13,7 @@ const TodoInput = () => {
 
   const getAllTodos = async () => {
     try {
-      const res = await axios.get("http://localhost:4000/api/todos");
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/todos`);
       return res.data.results;
     } catch (error) {
       console.error("Error Getting all todos: ", error);
@@ -24,7 +24,7 @@ const TodoInput = () => {
   const handleKeyPress = async (event) => {
     if (event.key === "Enter") {
       try {
-        await axios.post("http://localhost:4000/api/create_todo", { task, done: false });
+        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/create_todo`, { task, done: false });
         toast.success("Successfully Added new Task!");
         //Gettting all todos
         const todos = await getAllTodos();
